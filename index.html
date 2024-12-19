@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<ht lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home bank sampah</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css\">
+  </head>
+  
+  <nav class="navbar">
+    <div class="container">
+      <a href="" class="logo">BANK SAMPAHR</a>
+
+        <ul class="menu">
+
+          <li><a href="#">beranda</a></li>
+          <li><a href="#penjelasan">penjelasan</a></li>
+          <li><a href="page/jenis_mobil.html">jenis sampah</a></li>
+          <li><a href="page/kritik_dan_saran.html">kritik dan saran</a></li>
+        </ul>
+        <div class="tombol">&#9776;</div>
+      </div>
+    </nav>
+    
+    <section class="welcome-section" id="welcome">
+        <div class="welcome-text">
+            <h1>selamat datang di bank sampah kami </h1>
+            <p style="margin-bottom: 40px;">
+               Tempat pembelian dan penjualan sampah. 
+            </p>
+            <a href="#penjelasan" class="btn-primary">Lihat Detail</a>
+        </div>
+      </section>
+      <section class="penjelasan" id="penjelasan">
+       
+        </div>
+        <div class="text-container">
+            <h2>Penjelasan bank sampah kita </h2>
+            <p>
+              Bank Sampah adalah sebuah sistem pengelolaan sampah berbasis komunitas yang bertujuan untuk mengurangi jumlah sampah
+              yang berakhir di tempat pembuangan akhir (TPA) dengan cara memilah, mengelola, dan mendaur ulang sampah. Konsep ini mengadopsi prinsip ekonomi,
+               di mana sampah yang dipilah memiliki nilai tukar yang dapat diubah menjadi uang atau bentuk lain seperti tabungan.
+            </p>
+        </div>
+      </section>
+      <script >const tombol = document.querySelector(".tombol");
+        const menu = document.querySelector(".menu");
+        
+        tombol.addEventListener("click", () => {
+          menu.classList.toggle("aktif");
+        });
+        </script>
+      
+      <footer>
+      <p>© 2024 Simple Web. All rights reserved.</p>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jenis sampah</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="" class="logo">BANK SAMPAHR</a>
+
+        <ul class="menu">
+          <li><a href="../index.html">beranda</a></li>
+          <li><a href="jenis_mobil.html">jenis sampah</a></li>
+          <li><a href="kritik_dan_saran.html">kritik dan saran</a></li>
+        </ul>
+        <div class="tombol">&#9776;</div>
+      </div>
+    </nav>
+    <section class="jenis-mobil-section" id="jenis mobil">
+      <h2>sampah yang kami terima</h2>
+      <div class="produk-container">
+        <div class="produk-card">
+          <img src="../aset/foto sampah organik.webp" alt="Produk 1" />
+          <h3>organik</h3>
+          <p style="color: black;">sampah</p>
+          <a href="formulir.html" class="btn-primary">jual</a>
+        </div>
+        <div class="produk-card">
+          <img src="../aset/sampah anorganik.jpg" alt="Produk 2" />
+          <h3>anorganik</h3>
+          <p style="color: black;">sampah</p>
+          <a href="formulir.html" class="btn-primary">jual</a>
+        </div>
+        <div class="produk-card">
+          <img src="../aset/sampah b3.jpg" alt="Produk 3" />
+          <h3>b3</h3>
+          <p style="color: black;">sampah</p>
+          <a href="formulir.html" class="btn-primary">jual</a>
+        </div>
+      </div>
+    </div>
+   
+    </section>
+
+    <script >
+      const tombol = document.querySelector(".tombol");
+const menu = document.querySelector(".menu");
+
+tombol.addEventListener("click", () => {
+  menu.classList.toggle("aktif");
+});
+    </script>
+  </body>
+</html>

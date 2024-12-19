@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>terima kasih</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="" class="logo">BANK SAMPAHR</a>
+        <ul class="menu">
+          <li><a href="../index.html">beranda</a></li>
+          <li><a href="kritik_dan_saran.html">kritik dan saran</a></li>
+        </ul>
+        <div class="tombol">&#9776;</div>
+      </div>
+    </nav>
+    <section class="contact-section" id="contact">
+      <div class="contact-form">
+        <h2>
+          TERIMA KASIH TELAH MENJAGA SAMPAH DAN PENCEMARANHYA DENGAN MENJUALNYA
+          DI BANK SAMPAHR
+        </h2>
+        <br />
+      </div>
+    </section>
+
+    <script>
+      const tombol = document.querySelector(".tombol");
+      const menu = document.querySelector(".menu");
+
+      tombol.addEventListener("click", () => {
+        menu.classList.toggle("aktif");
+      });
+    </script>
+  </body>
+</html>

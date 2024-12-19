@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Struk Penjualan Sampah</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="" class="logo">BANK SAMPAHR</a>
+        <ul class="menu">
+          <li><a href="../index.html">beranda</a></li>
+          <li><a href="jenis_mobil.html">jenis sampah</a></li>
+          <li><a href="kritik_dan_saran.html">kritik dan saran</a></li>
+        </ul>
+        <div class="tombol">&#9776;</div>
+      </div>
+    </nav>
+
+    <section class="layanan-section" id="layanan">
+      <h2>Data Sampah Anda:</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered" style="color: white">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Kelas</th>
+              <th>Email</th>
+              <th>Jenis Sampah</th>
+              <th>Jumlah Sampah satu trash bag</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="data-sampah"></tbody>
+        </table>
+      </div>
+      <div id="print-result"></div>
+    </section>
+    <div class="center-btn">
+      <a href="penutup.html" class="btn-primary">selanjutnya</a>
+    </div>
+    <script>
+      const dataSampah = JSON.parse(localStorage.getItem("dataSampah")) || [];
+      const dataSampahTable = document.getElementById("data-sampah");
+
+      function renderTable() {
+        dataSampahTable.innerHTML = "";
+
+        dataSampah.forEach((item, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item.name}</td>
+            
+            <td>${item.kelas}</td>
+            <td>${item.email}</td>
+            <td>${item.jenisSampah}</td>
+            <td>${item.jumlahSampah}</td>
+            <td>
+              <a href="Formulir.html?edit=${index}" class="btn btn-success">Edit</a>
+              <button class="btn btn-danger" onclick="deleteData(${index})">Hapus</button>
+              <button class="btn btn-info" onclick="printData(${index})">Cetak</button>
+            </td>
+          `;
+          dataSampahTable.appendChild(row);
+        });
+      }
+
+      function deleteData(index) {
+        const confirmed = confirm(
+          "Apakah Anda yakin ingin menghapus data ini?"
+        );
+        if (confirmed) {
+          dataSampah.splice(index, 1);
+          localStorage.setItem("dataSampah", JSON.stringify(dataSampah));
+          renderTable();
+        }
+      }
+
+      function printData(index) {
+        const item = dataSampah[index];
+        const printResult = document.getElementById("print-result");
+
+        const printContent = `
+          <div class="card mt-3 p-3">
+            <h3>Struk Data Sampah</h3>
+            <table class="table table-bordered">
+              <tr>
+                <th>Nama</th>
+                <td>${item.name}</td>
+              </tr>
+              
+              <tr>
+                <th>Kelas</th>
+                <td>${item.kelas}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>${item.email}</td>
+              </tr>
+              <tr>
+                <th>Jenis Sampah</th>
+                <td>${item.jenisSampah}</td>
+              </tr>
+              <tr>
+                <th>Jumlah Sampah satu trash bag</th>
+                <td>${item.jumlahSampah}</td>
+              </tr>
+            </table>
+            <p class="text-center">Terima kasih telah berpartisipasi!</p>
+          </div>
+        `;
+
+        printResult.innerHTML = printContent;
+      }
+      const tombol = document.querySelector(".tombol");
+      const menu = document.querySelector(".menu");
+
+      renderTable();
+      tombol.addEventListener("click", () => {
+        menu.classList.toggle("aktif");
+      });
+    </script>
+    <script src="../js/bootstrap.bundle.js"></script>
+  </body>
+</html>

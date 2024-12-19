@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="layanan-section" id="layanan">
+      <h2>Data Sampah Anda:</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Kelas</th>
+              <th>Email</th>
+              <th>Jenis Sampah</th>
+              <th>Jumlah Sampah</th>
+            </tr>
+          </thead>
+          <tbody id="data-sampah"></tbody>
+        </table>
+      </div>
+
+      <!-- Tombol Cetak Hasil -->
+      <button id="printBtn" class="btn btn-primary">Cetak Hasil</button>
+    </section>
+
+    <script>
+      // Ambil data dari localStorage
+      const dataSampah = JSON.parse(localStorage.getItem("dataSampah")) || [];
+      const dataSampahTable = document.getElementById("data-sampah");
+
+      // Fungsi untuk render data ke tabel
+      function renderTable() {
+        dataSampahTable.innerHTML = ""; // Kosongkan tabel
+        dataSampah.forEach((item, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${item.name}</td>
+              <td>${item.kelas}</td>
+              <td>${item.email}</td>
+              <td>${item.jenisSampah}</td>
+              <td>${item.jumlahSampah}</td>
+            `;
+          dataSampahTable.appendChild(row);
+        });
+      }
+
+      // Fungsi untuk mencetak hasil
+      function cetakHasil() {
+        const originalContent = document.body.innerHTML; // Simpan konten asli
+        const tableContent = `
+            <h2>Data Sampah Anda</h2>
+            <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; text-align: left;">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Kelas</th>
+                  <th>Email</th>
+                  <th>Jenis Sampah</th>
+                  <th>Jumlah Sampah</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${dataSampah
+                  .map(
+                    (item, index) => `
+                  <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.name}</td>
+                    <td>${item.kelas}</td>
+                    <td>${item.email}</td>
+                    <td>${item.jenisSampah}</td>
+                    <td>${item.jumlahSampah}</td>
+                  </tr>
+                `
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          `;
+        document.body.innerHTML = tableContent; // Ganti konten dengan tabel
+        window.print(); // Cetak halaman
+        document.body.innerHTML = originalContent; // Kembalikan konten asli
+        location.reload(); // Reload halaman untuk mengembalikan fungsionalitas
+      }
+
+      // Tambahkan event listener ke tombol cetak
+      document.getElementById("printBtn").addEventListener("click", cetakHasil);
+
+      // Render tabel saat halaman dimuat
+      renderTable();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulir Penjualan Sampah</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="" class="logo">BANK SAMPAHR</a>
+
+        <ul class="menu">
+          <li><a href="../index.html">beranda</a></li>
+          <li><a href="jenis_mobil.html">jenis sampah</a></li>
+          <li><a href="kritik_dan_saran.html">kritik dan saran</a></li>
+        </ul>
+        <div class="tombol">&#9776;</div>
+      </div>
+    </nav>
+
+    <section class="contact-section" id="contact">
+      <h2>Formulir Penjualan Sampah</h2>
+      <form id="peminjamanForm" class="contact-form">
+        <div class="form-group">
+          <label for="name">Nama : </label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="kelas">Kelas : </label>
+          <input type="text" id="kelas" name="kelas" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email : </label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="jenis-sampah">Jenis Sampah: </label>
+          <select id="jenis-sampah" name="jenis-sampah" required>
+            <option value="" disabled selected>Pilih Jenis Sampah</option>
+            <option value="Organik">Organik</option>
+            <option value="Anorganik">Anorganik</option>
+            <option value="B3">B3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="jh">Jumlah Sampah satu trash bag: </label>
+          <input type="number" id="jh" name="jh" max="10" min="1" required />
+        </div>
+        <button type="submit" class="btn-primary">Simpan</button>
+      </form>
+    </section>
+
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editIndex = urlParams.get("edit");
+
+        if (editIndex !== null) {
+          const dataSampah =
+            JSON.parse(localStorage.getItem("dataSampah")) || [];
+          const data = dataSampah[editIndex];
+
+          document.getElementById("name").value = data.name;
+
+          document.getElementById("kelas").value = data.kelas;
+          document.getElementById("email").value = data.email;
+          document.getElementById("jenis-sampah").value = data.jenisSampah;
+          document.getElementById("jh").value = data.jumlahSampah;
+
+          document.getElementById("peminjamanForm").onsubmit = function (
+            event
+          ) {
+            event.preventDefault();
+
+            dataSampah[editIndex] = {
+              name: document.getElementById("name").value,
+
+              kelas: document.getElementById("kelas").value,
+              email: document.getElementById("email").value,
+              jenisSampah: document.getElementById("jenis-sampah").value,
+              jumlahSampah: document.getElementById("jh").value,
+            };
+
+            localStorage.setItem("dataSampah", JSON.stringify(dataSampah));
+            alert("Data berhasil diperbarui!");
+            window.location.href = "halaman_hasil_from.html";
+          };
+        } else {
+          document.getElementById("peminjamanForm").onsubmit = function (
+            event
+          ) {
+            event.preventDefault();
+            const dataSampah =
+              JSON.parse(localStorage.getItem("dataSampah")) || [];
+
+            dataSampah.push({
+              name: document.getElementById("name").value,
+
+              kelas: document.getElementById("kelas").value,
+              email: document.getElementById("email").value,
+              jenisSampah: document.getElementById("jenis-sampah").value,
+              jumlahSampah: document.getElementById("jh").value,
+            });
+
+            localStorage.setItem("dataSampah", JSON.stringify(dataSampah));
+            alert("Data berhasil disimpan!");
+            window.location.href = "halaman_hasil_from.html";
+          };
+        }
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const editIndex = urlParams.get("edit");
+
+        const dataSampah = JSON.parse(localStorage.getItem("dataSampah")) || [];
+
+        if (editIndex !== null) {
+          const data = dataSampah[editIndex];
+
+          document.getElementById("name").value = data.name;
+
+          document.getElementById("kelas").value = data.kelas;
+          document.getElementById("email").value = data.email;
+          document.getElementById("jenis-sampah").value = data.jenisSampah;
+          document.getElementById("jh").value = data.jumlahSampah;
+
+          document.getElementById("peminjamanForm").onsubmit = function (
+            event
+          ) {
+            event.preventDefault();
+
+            dataSampah[editIndex] = {
+              name: document.getElementById("name").value,
+
+              kelas: document.getElementById("kelas").value,
+              email: document.getElementById("email").value,
+              jenisSampah: document.getElementById("jenis-sampah").value,
+              jumlahSampah: document.getElementById("jh").value,
+            };
+
+            localStorage.setItem("dataSampah", JSON.stringify(dataSampah));
+            alert("Data berhasil diperbarui!");
+            window.location.href = "halaman_hasil_from.html";
+          };
+        } else {
+          document.getElementById("peminjamanForm").onsubmit = function (
+            event
+          ) {
+            event.preventDefault();
+
+            dataSampah.push({
+              name: document.getElementById("name").value,
+
+              kelas: document.getElementById("kelas").value,
+              email: document.getElementById("email").value,
+              jenisSampah: document.getElementById("jenis-sampah").value,
+              jumlahSampah: document.getElementById("jh").value,
+            });
+
+            localStorage.setItem("dataSampah", JSON.stringify(dataSampah));
+            alert("Data berhasil disimpan!");
+            window.location.href = "halaman_hasil_from.html";
+          };
+        }
+      });
+
+      const tombol = document.querySelector(".tombol");
+      const menu = document.querySelector(".menu");
+
+      tombol.addEventListener("click", () => {
+        menu.classList.toggle("aktif");
+      });
+    </script>
+
+    <script src="../js/bootstrap.bundle.js"></script>
+  </body>
+</html>
